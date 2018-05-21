@@ -1,7 +1,8 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+namespace Mingalevme\Tests\Utils\Url;
 
+use PHPUnit\Framework\TestCase;
 use Mingalevme\Utils\Url;
 
 class UrlTest extends TestCase
