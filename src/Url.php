@@ -166,14 +166,6 @@ class Url
      */
     public static function absolutizeUrl($url, $baseUrl)
     {
-        if (is_string($url) === false) {
-            throw new \InvalidArgumentException("\$url is not a string");
-        }
-
-        if (is_string($baseUrl) === false) {
-            throw new \InvalidArgumentException("\$baseUrl is not a string");
-        }
-
         $components = parse_url($baseUrl);
 
         if (empty($components[self::SCHEME]) || empty($components[self::HOST])) {
@@ -221,11 +213,11 @@ class Url
     {
         $components = self::parse($url);
 
-        if (isset($components[self::HOST])) {
+        if (isset($components[self::SCHEME]) && $components[self::SCHEME] !== 'file') {
             return false;
         }
 
-        if (isset($components[self::SCHEME]) && $components[self::SCHEME] !== 'file') {
+        if (isset($components[self::HOST])) {
             return false;
         }
 
