@@ -1,0 +1,73 @@
+<?php
+
+use PHPUnit\Framework\TestCase;
+
+use Mingalevme\Utils\Url;
+
+class UrlTest extends TestCase
+{
+    /**
+     * Just integration test, for unit test
+     * @see https://github.com/mingalevme/http-build-url/blob/master/tests/HttpBuildUrlTest.php
+     */
+    public function testBuild()
+    {
+        $this->assertEquals('https://github.com/mingalevme/phputils-url', Url::build('/mingalevme/phputils-url', [
+            's' => 'https',
+            'h' => 'github.com',
+        ]));
+    }
+
+    public function testParseQueryString()
+    {
+        $this->assertEquals([
+            'foo' => 'bar',
+            'bar' => 'foo',
+        ], Url::parseQueryString('foo=bar&bar=foo'));
+    }
+
+    public function testParseQueryStringFromUrl()
+    {
+        $this->assertEquals([], Url::parseQueryStringFromUrl('http://example.com'));
+
+        $this->assertEquals([
+            'foo' => 'bar',
+            'bar' => 'foo',
+        ], Url::parseQueryStringFromUrl('http://example.com?foo=bar&bar=foo'));
+    }
+
+    public function testAbsolutizeUrl1()
+    {
+        $this->assertEquals('https://github.com/mingalevme/phputils-url',
+            Url::absolutizeUrl('/mingalevme/phputils-url', 'https://github.com'));
+
+    }
+
+    public function testAbsolutizeUrl2()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        Url::absolutizeUrl('/mingalevme/phputils-url', '/mingalevme');
+    }
+
+    public function testIsAbsolute()
+    {
+        $this->assertTrue(Url::isAbsolute('https://github.com/mingalevme/phputils-url'));
+        $this->assertFalse(Url::isAbsolute('//github.com/mingalevme/phputils-url'));
+        $this->assertFalse(Url::isAbsolute('/mingalevme/phputils-url'));
+    }
+
+    public function testIsRelative()
+    {
+        $this->assertFalse(Url::isRelative('https://github.com/mingalevme/phputils-url'));
+        $this->assertTrue(Url::isRelative('//github.com/mingalevme/phputils-url'));
+        $this->assertTrue(Url::isRelative('/mingalevme/phputils-url'));
+    }
+
+    public function testIsLocal()
+    {
+        $this->assertTrue(Url::isLocal('/mingalevme/phputils-url'));
+        $this->assertTrue(Url::isLocal('file:///mingalevme/phputils-url'));
+        $this->assertFalse(Url::isLocal('https://github.com/mingalevme/phputils-url'));
+        $this->assertFalse(Url::isLocal('//github.com/mingalevme/phputils-url'));
+    }
+}

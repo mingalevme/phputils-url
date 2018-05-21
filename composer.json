@@ -1,0 +1,26 @@
+{
+  "name": "mingalevme/phputils-url",
+  "description": "Some helpers to work with URLs",
+  "license": "MIT",
+  "keywords": ["php", "utils", "url", "http_build_url"],
+  "authors": [
+    {
+      "name": "Mikhail Mingalev",
+      "email": "mingalevme@gmail.com"
+    }
+  ],
+  "require": {
+    "php" : ">=5.4.0",
+    "ext-mbstring": "*",
+    "mingalevme/http-build-url": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0"
+  },
+  "autoload": {
+    "classmap": ["src/"]
+  },
+  "autoload-dev": {
+    "classmap": ["tests/"]
+  }
+}
