@@ -45,8 +45,13 @@ class UrlTest extends TestCase
 
     public function testAbsolutizeUrl2()
     {
-        $this->expectException(\InvalidArgumentException::class);
-        Url::absolutizeUrl('/mingalevme/phputils-url', '/mingalevme');
+        try {
+            Url::absolutizeUrl('/mingalevme/phputils-url', '/mingalevme');
+        } catch (\InvalidArgumentException $e) {
+            $this->assertTrue(true);
+            return;
+        }
+        $this->fail('Exception has not been thrown');
     }
 
     public function testIsAbsolute()
