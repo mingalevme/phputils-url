@@ -1,5 +1,5 @@
 {
-  "name": "mingalevme/phputils-url",
+  "name": "mingalevme/utils-url",
   "description": "Some helpers to work with URLs",
   "license": "MIT",
   "keywords": ["php", "utils", "url", "http_build_url"],
