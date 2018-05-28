@@ -9,6 +9,18 @@ class UrlTest extends TestCase
 {
     /**
      * Just integration test, for unit test
+     * @see https://github.com/mingalevme/phputils-secure-link/blob/master/tests/SecureLinkTest.php
+     */
+    public function testSecureLink()
+    {
+        $signer = new Url\SecureLink('phpunit');
+
+        $this->assertEquals('https://github.com/mingalevme/phputils-url?signature=UG_RvLVM5QmPfuKHj9hNtw%3D%3D',
+            $signer->sign('https://github.com/mingalevme/phputils-url'));
+    }
+
+    /**
+     * Just integration test, for unit test
      * @see https://github.com/mingalevme/http-build-url/blob/master/tests/HttpBuildUrlTest.php
      */
     public function testBuild()

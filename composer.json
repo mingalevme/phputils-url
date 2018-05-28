@@ -11,8 +11,8 @@
   ],
   "require": {
     "php" : ">=5.4.0",
-    "ext-mbstring": "*",
-    "mingalevme/http-build-url": "*"
+    "mingalevme/http-build-url": "^1.0",
+    "mingalevme/phputils-secure-link": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~6.0"
